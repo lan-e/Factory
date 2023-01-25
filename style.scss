@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+}
+.content {
+  display: flex;
+  flex-direction: row;
+  margin: 100px 0;
+  margin-left: -120px;
+}
+//MAIN FLEX ITEMS - left, right
+.left {
+  width: 60vw;
+
+  img {
+    height: 200px;
+    border-radius: 5px;
+  }
+}
+.right {
+  margin-left: 20px;
+  display: flex;
+  font-family: "Source Sans Pro", sans-serif;
+  flex-direction: column;
+  font-size: 16px;
+  //margin-top: -24px;
+  width: 20vw;
+  color: #484a4c;
+
+  div {
+    width: 250px;
+    margin-top: 16px;
+  }
+  h1 {
+    color: #134880;
+    height: 120px;
+    width: 305px;
+    margin-top: 16px;
+  }
+}
+//1st gallery row
+.image-wrapper {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(20% - 10px);
+  overflow-x: auto;
+  gap: 10px;
+  scroll-snap-type: x mandatory; //bez toga ne radi
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.image-wrapper.no-smooth {
+  scroll-behavior: auto;
+}
+
+//individual images
+.image-item {
+  scroll-snap-align: start;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+//arrows
+.arrow {
+  margin-left: 145px;
+
+  img {
+    height: 16px;
+    width: 10px;
+    border-radius: 5px;
+  }
+}
+.next,
+.prev {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 60px;
+  height: 60px;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  &:hover {
+    border: 1px solid #134880;
+  }
+}
+//2nd gallery row + arrows
+.flex-tworows {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+}
