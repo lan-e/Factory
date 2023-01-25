@@ -88,12 +88,11 @@
 }
 //2nd gallery row + arrows
 .flex-two {
-  margin-top: 10px;
+  margin-top: 5px;
   display: flex;
   flex-direction: row;
-  .flex {
-    img {
-      margin-left: 10px;
-    }
-  }
+}
+.image-wrapper-bottom {
+  display: flex;
+  gap: 10px;
 }
