@@ -1,25 +1,22 @@
 $(document).ready(function () {
-  const imageWrapper = document.querySelector(".image-wrapper");
-  const imageWrapperChildren = Array.from(imageWrapper.children);
-  const widthToScroll = imageWrapper.children[0].offsetWidth;
-  const arrowPrev = document.querySelector(".arrow.prev");
-  const arrowNext = document.querySelector(".arrow.next");
-  const column = Math.floor(imageWrapper.offsetWidth / widthToScroll); //+24?
-
-  imageWrapperChildren
-    .slice(-column)
-    .reverse()
-    .forEach((item) => {
-      imageWrapper.insertAdjacentHTML("afterbegin", item.outerHTML);
-    });
+  let imageWrapper = document.querySelector(".image-wrapper");
+  let imageWrapperChildren = Array.from(imageWrapper.children);
+  let widthToScroll = imageWrapper.children[0].offsetWidth;
+  let column = Math.floor(imageWrapper.offsetWidth / widthToScroll);
 
   imageWrapperChildren.slice(0, column).forEach((item) => {
     imageWrapper.insertAdjacentHTML("beforeend", item.outerHTML);
   });
+  imageWrapperChildren
+    .slice(-column)
+    .reverse()
+    .forEach((item) => {
+      imageWrapper.insertAdjacentHTML("afterbegin", item.outerHTML); //nakon početka
+    });
 
-  //bez ovog ne radi lijevi arrow
+  //bez ovog lijevi arrow radi tek nakon klika na desni
   $(".image-wrapper").addClass("no-smooth");
-  $(".image-wrapper").scrollLeft(imageWrapper.offsetWidth); //provjeri ako bude error
+  $(".image-wrapper").scrollLeft(imageWrapper.offsetWidth);
   $(".image-wrapper").removeClass("no-smooth");
 
   $(".arrow.prev").click(function () {
@@ -30,14 +27,13 @@ $(document).ready(function () {
     imageWrapper.scrollLeft += widthToScroll;
   });
 
-  //za beskonacnost
+  //infinite scrolling
   $(".image-wrapper").scroll(function () {
     if (imageWrapper.scrollLeft === 0) {
       imageWrapper.classList.add("no-smooth");
       imageWrapper.scrollLeft =
         imageWrapper.scrollWidth - 2 * imageWrapper.offsetWidth;
       imageWrapper.classList.remove("no-smooth");
-      console.log(imageWrapper.offsetWidth);
     } else if (
       imageWrapper.scrollLeft ===
       imageWrapper.scrollWidth - imageWrapper.offsetWidth
@@ -45,7 +41,6 @@ $(document).ready(function () {
       imageWrapper.classList.add("no-smooth");
       imageWrapper.scrollLeft = imageWrapper.offsetWidth;
       imageWrapper.classList.remove("no-smooth");
-      console.log(imageWrapper.scrollLeft);
     }
   });
 

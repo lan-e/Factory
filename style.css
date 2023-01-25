@@ -41,9 +41,11 @@
 }
 
 .image-wrapper {
+  max-width: 1000px;
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: calc(20% - 10px);
+  grid-auto-columns: minmax(-webkit-max-content, auto);
+  grid-auto-columns: minmax(max-content, auto);
   overflow-x: auto;
   gap: 10px;
   -ms-scroll-snap-type: x mandatory;
