@@ -87,11 +87,11 @@
   border: 1px solid #134880;
 }
 
-.flex-tworows {
+.flex-two {
   margin-top: 10px;
   display: flex;
   flex-direction: row;
 }
-.flex-tworows .flex img {
+.flex-two .flex img {
   margin-left: 10px;
 }/*# sourceMappingURL=style.css.map */
