@@ -13,9 +13,6 @@
   margin-left: -120px;
 }
 
-.left {
-  width: 60vw;
-}
 .left img {
   height: 200px;
   border-radius: 5px;
@@ -30,14 +27,15 @@
   color: #484a4c;
 }
 .right div {
-  width: 250px;
-  margin-top: 16px;
+  width: 300px;
+  margin-top: 20px;
+  line-height: 26px;
+  font-size: 18px;
 }
 .right h1 {
   color: #134880;
   height: 120px;
   width: 305px;
-  margin-top: 16px;
 }
 
 .image-wrapper {
