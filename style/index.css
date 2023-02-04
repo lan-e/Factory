@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
+.left-side img {
+  height: 200px;
+  border-radius: 5px;
+}
+
+.image-wrapper {
+  margin-top: 60px;
+  max-width: 1000px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(-webkit-max-content, auto);
+  grid-auto-columns: minmax(max-content, auto);
+  overflow-x: auto;
+  gap: 10px;
+  -ms-scroll-snap-type: x mandatory;
+      scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.image-wrapper.no-smooth {
+  scroll-behavior: auto;
+}
+
+.image-item {
+  scroll-snap-align: start;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.bottom-row {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.image-wrapper-bottom {
+  display: flex;
+  gap: 10px;
+}
+
+.right-side {
+  margin-left: 20px;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  color: #484a4c;
+}
+.right-side div {
+  width: 300px;
+  margin-top: 20px;
+  line-height: 26px;
+  font-size: 18px;
+}
+.right-side h1 {
+  color: #134880;
+  height: 120px;
+  width: 305px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #fff;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.content {
+  max-width: 940px;
+  margin: auto;
+}
+.content .header {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  gap: 19px;
+}
+.content .header .header-left {
+  background-color: #ddd;
+  border-radius: 0 0 5px 5px;
+  width: 30vw;
+}
+.content .header .header-right {
+  background-color: #ddd;
+  border-radius: 0 0 5px 5px;
+  width: 70vw;
+}
+.content .main {
+  display: flex;
+  margin: 100px 0;
+  margin-left: -400px;
+}
+.content .footer {
+  height: 100px;
+  width: 100%;
+  max-width: 940px;
+  background-color: #ddd;
+  position: fixed;
+  bottom: 0;
+}
+
+.arrows {
+  margin-left: 100px;
+}
+.arrows img {
+  height: 16px;
+  width: 10px;
+  border-radius: 5px;
+}
+
+.next-arrow,
+.prev-arrow {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 60px;
+  height: 60px;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+.next-arrow:hover,
+.prev-arrow:hover {
+  border: 1px solid #134880;
+}/*# sourceMappingURL=index.css.map */

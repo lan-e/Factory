@@ -19,11 +19,11 @@ $(document).ready(function () {
   $(".image-wrapper").scrollLeft(imageWrapper.offsetWidth);
   $(".image-wrapper").removeClass("no-smooth");
 
-  $(".arrow.prev").click(function () {
+  $(".prev-arrow").click(function () {
     imageWrapper.scrollLeft -= widthToScroll;
   });
 
-  $(".arrow.next").click(function () {
+  $(".next-arrow").click(function () {
     imageWrapper.scrollLeft += widthToScroll;
   });
 
@@ -46,25 +46,21 @@ $(document).ready(function () {
 
   //ARROW CHANGE ON HOVER AND CLICK
 
-  $(".next")
-    .click(function () {
-      $(".next img").attr("src", "img/arrow-blue-right.png");
-    })
+  $(".next-arrow")
+    .click(function () {})
     .mouseenter(function () {
-      $(".next img").attr("src", "img/arrow-blue-right.png");
+      $(".next-arrow img").attr("src", "img/arrow-blue-right.png");
     })
     .mouseleave(function () {
-      $(".next img").attr("src", "img/arrow-gray-right.png");
+      $(".next-arrow img").attr("src", "img/arrow-gray-right.png");
     });
 
-  $(".prev")
-    .click(function () {
-      $(".prev img").attr("src", "img/arrow-blue-left.png");
-    })
+  $(".prev-arrow")
+    .click(function () {})
     .mouseenter(function () {
-      $(".prev img").attr("src", "img/arrow-blue-left.png");
+      $(".prev-arrow img").attr("src", "img/arrow-blue-left.png");
     })
     .mouseleave(function () {
-      $(".prev img").attr("src", "img/arrow-gray-left.png");
+      $(".prev-arrow img").attr("src", "img/arrow-gray-left.png");
     });
 });

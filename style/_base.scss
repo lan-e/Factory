@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
+
+@mixin size() {
+  height: 100px;
+  width: 100%;
+}
+@mixin bg-color($width) {
+  background-color: $primary;
+  border-radius: 0 0 5px 5px;
+  width: $width;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #fff;
+  font-family: "Source Sans Pro", sans-serif;
+}
+.content {
+  max-width: 940px;
+  margin: auto;
+  .header {
+    @include size();
+    display: flex;
+    gap: 19px;
+
+    .header-left {
+      @include bg-color(30vw);
+    }
+    .header-right {
+      @include bg-color(70vw);
+    }
+  }
+  .main {
+    display: flex;
+    margin: 100px 0;
+    margin-left: -400px;
+  }
+  .footer {
+    @include size();
+    max-width: 940px;
+    background-color: $primary;
+    position: fixed;
+    bottom: 0;
+  }
+}

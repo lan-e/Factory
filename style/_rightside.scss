@@ -1,0 +1,19 @@
+.right-side {
+  margin-left: 20px;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  color: $textColor;
+  div {
+    width: 300px;
+    margin-top: 20px;
+    line-height: 26px;
+    font-size: 18px;
+  }
+  h1 {
+    color: $secondary;
+    height: 120px;
+    width: 305px;
+  }
+}
