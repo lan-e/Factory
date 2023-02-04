@@ -11,24 +11,22 @@ $(document).ready(function () {
     .slice(-column)
     .reverse()
     .forEach((item) => {
-      imageWrapper.insertAdjacentHTML("afterbegin", item.outerHTML); //nakon početka
+      imageWrapper.insertAdjacentHTML("afterbegin", item.outerHTML);
     });
 
-  //bez ovog lijevi arrow radi tek nakon klika na desni
   $(".image-wrapper").addClass("no-smooth");
   $(".image-wrapper").scrollLeft(imageWrapper.offsetWidth);
   $(".image-wrapper").removeClass("no-smooth");
 
-  $(".prev-arrow").click(function () {
+  $(".prev-arrow").on("click", function () {
     imageWrapper.scrollLeft -= widthToScroll;
   });
 
-  $(".next-arrow").click(function () {
+  $(".next-arrow").on("click", function () {
     imageWrapper.scrollLeft += widthToScroll;
   });
 
-  //infinite scrolling
-  $(".image-wrapper").scroll(function () {
+  $(".image-wrapper").on("scroll", function () {
     if (imageWrapper.scrollLeft === 0) {
       imageWrapper.classList.add("no-smooth");
       imageWrapper.scrollLeft =
@@ -45,22 +43,21 @@ $(document).ready(function () {
   });
 
   //ARROW CHANGE ON HOVER AND CLICK
-
   $(".next-arrow")
-    .click(function () {})
-    .mouseenter(function () {
+    .on("click", function () {})
+    .on("mouseenter", function () {
       $(".next-arrow img").attr("src", "img/arrow-blue-right.png");
     })
-    .mouseleave(function () {
+    .on("mouseleave", function () {
       $(".next-arrow img").attr("src", "img/arrow-gray-right.png");
     });
 
   $(".prev-arrow")
-    .click(function () {})
-    .mouseenter(function () {
+    .on("click", function () {})
+    .on("mouseenter", function () {
       $(".prev-arrow img").attr("src", "img/arrow-blue-left.png");
     })
-    .mouseleave(function () {
+    .on("mouseleave", function () {
       $(".prev-arrow img").attr("src", "img/arrow-gray-left.png");
     });
 });
