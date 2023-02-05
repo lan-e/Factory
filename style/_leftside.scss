@@ -11,7 +11,18 @@
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: minmax(max-content, auto);
-  overflow-x: auto;
+  overflow-x: hidden;
+  gap: $imageGap;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.image-wrapper-bottom {
+  max-width: 810px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(max-content, auto);
+  overflow-x: hidden;
   gap: $imageGap;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
@@ -19,6 +30,9 @@
 }
 
 .image-wrapper.no-smooth {
+  scroll-behavior: auto;
+}
+.image-wrapper-bottom.no-smooth {
   scroll-behavior: auto;
 }
 
@@ -34,8 +48,4 @@
   margin-top: 5px;
   display: flex;
   flex-direction: row;
-}
-.image-wrapper-bottom {
-  display: flex;
-  gap: $imageGap;
 }
