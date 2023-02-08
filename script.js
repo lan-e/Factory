@@ -1,84 +1,84 @@
 $(document).ready(function () {
-  let imageWrapper = document.querySelector(".image-wrapper");
-  let imageWrapperChildren = Array.from(imageWrapper.children);
-  let widthToScroll = imageWrapper.children[0].offsetWidth;
-  let column = Math.floor(imageWrapper.offsetWidth / widthToScroll);
+  imageWrapper = [$(".image-wrapper")[0], $(".image-wrapper-bottom")[0]];
+  imageWrapperChildren = [
+    $(".image-wrapper").children().toArray(),
+    $(".image-wrapper-bottom").children().toArray(),
+  ];
+  let widthToScroll = imageWrapperChildren[0][0].offsetWidth;
+  column = [
+    Math.floor(imageWrapper[0].offsetWidth / widthToScroll),
+    Math.floor(imageWrapper[1].offsetWidth / widthToScroll),
+  ];
 
-  let imageWrapperBottom = document.querySelector(".image-wrapper-bottom");
-  let imageWrapperBottomChildren = Array.from(imageWrapperBottom.children);
-  let widthToScrollBottom = imageWrapperBottom.children[0].offsetWidth;
-  let columnBottom = Math.floor(
-    imageWrapperBottom.offsetWidth / widthToScrollBottom
-  );
-
-  imageWrapperChildren.slice(0, column).forEach((item) => {
-    imageWrapper.insertAdjacentHTML("beforeend", item.outerHTML);
-  });
-  imageWrapperChildren
-    .slice(-column)
-    .reverse()
-    .forEach((item) => {
-      imageWrapper.insertAdjacentHTML("afterbegin", item.outerHTML);
+  for (let x = 0; x < 2; x++) {
+    imageWrapperChildren[x].slice(0, column[x]);
+    imageWrapperChildren[x].forEach((item) => {
+      imageWrapper[x].insertAdjacentHTML(
+        "beforeend",
+        $(item).prop("outerHTML")
+      );
     });
+    imageWrapperChildren[x]
+      .slice(-column[x])
+      .reverse()
+      .forEach((item) => {
+        imageWrapper[x].insertAdjacentHTML(
+          "afterbegin",
+          $(item).prop("outerHTML")
+        );
+      });
 
-  $(".image-wrapper").addClass("no-smooth");
-  $(".image-wrapper").scrollLeft(imageWrapper.offsetWidth);
-  $(".image-wrapper").removeClass("no-smooth");
-
-  //needed for looping
-  $(".image-wrapper").on("scroll", function () {
-    if (imageWrapper.scrollLeft === 0) {
-      imageWrapper.classList.add("no-smooth");
-      imageWrapper.scrollLeft =
-        imageWrapper.scrollWidth - 2 * imageWrapper.offsetWidth;
-      imageWrapper.classList.remove("no-smooth");
-    } else if (
-      imageWrapper.scrollLeft ===
-      imageWrapper.scrollWidth - imageWrapper.offsetWidth
-    ) {
-      imageWrapper.classList.add("no-smooth");
-      imageWrapper.scrollLeft = imageWrapper.offsetWidth;
-      imageWrapper.classList.remove("no-smooth");
+    if (x == 0) {
+      $(".image-wrapper").addClass("no-smooth");
+      $(".image-wrapper").scrollLeft(imageWrapper[x].offsetWidth);
+      $(".image-wrapper").removeClass("no-smooth");
+    } else {
+      $(".image-wrapper-bottom").addClass("no-smooth");
+      $(".image-wrapper-bottom").scrollLeft(imageWrapper[x].offsetWidth);
+      $(".image-wrapper-bottom").removeClass("no-smooth");
     }
-  });
-  //-------------------------------------------------------
 
-  imageWrapperBottomChildren.slice(0, columnBottom).forEach((item) => {
-    imageWrapperBottom.insertAdjacentHTML("beforeend", item.outerHTML);
-  });
-  imageWrapperBottomChildren
-    .slice(-columnBottom)
-    .reverse()
-    .forEach((item) => {
-      imageWrapperBottom.insertAdjacentHTML("afterbegin", item.outerHTML);
+    $(".image-wrapper").on("scroll", function () {
+      if (imageWrapper[x].scrollLeft < 2) {
+        imageWrapper[x].classList.add("no-smooth");
+        imageWrapper[x].scrollLeft =
+          imageWrapper[x].scrollWidth - 2 * imageWrapper[x].offsetWidth;
+        imageWrapper[x].classList.remove("no-smooth");
+      } else if (
+        imageWrapper[x].scrollLeft ===
+        imageWrapper[x].scrollWidth - imageWrapper[x].offsetWidth
+      ) {
+        imageWrapper[x].classList.add("no-smooth");
+        imageWrapper[x].scrollLeft = imageWrapper[x].offsetWidth;
+        imageWrapper[x].classList.remove("no-smooth");
+      }
     });
-
-  $(".image-wrapper-bottom").addClass("no-smooth");
-  $(".image-wrapper-bottom").scrollLeft(imageWrapperBottom.offsetWidth);
-  $(".image-wrapper-bottom").removeClass("no-smooth");
-
-  //needed for looping
-  $(".image-wrapper-bottom").on("scroll", function () {
-    if (imageWrapperBottom.scrollLeft === 0) {
-      imageWrapperBottom.classList.add("no-smooth");
-      imageWrapperBottom.scrollLeft =
-        imageWrapperBottom.scrollWidth - imageWrapperBottom.offsetWidth;
-      imageWrapperBottom.classList.remove("no-smooth");
-    } else if (
-      imageWrapperBottom.scrollLeft ===
-      imageWrapperBottom.scrollWidth - imageWrapperBottom.offsetWidth
-    ) {
-      imageWrapperBottom.classList.add("no-smooth");
-      imageWrapperBottom.scrollLeft = imageWrapperBottom.offsetWidth;
-      imageWrapperBottom.classList.remove("no-smooth");
-    }
-  });
-  //-------------------------------------------------------
+    $(".image-wrapper-bottom").on("scroll", function () {
+      if (imageWrapper[x].scrollLeft < 1) {
+        imageWrapper[x].classList.add("no-smooth");
+        imageWrapper[x].scrollLeft =
+          imageWrapper[x].scrollWidth - 2 * imageWrapper[x].offsetWidth;
+        imageWrapper[x].classList.remove("no-smooth");
+      } else if (
+        imageWrapper[x].scrollLeft ===
+        imageWrapper[x].scrollWidth - imageWrapper[x].offsetWidth
+      ) {
+        imageWrapper[x].classList.add("no-smooth");
+        imageWrapper[x].scrollLeft = imageWrapper[x].offsetWidth;
+        imageWrapper[x].classList.remove("no-smooth");
+      }
+    });
+  }
   //ARROW CHANGE ON HOVER AND CLICK
   $(".next-arrow")
     .on("click", function () {
-      imageWrapper.scrollLeft += widthToScroll;
-      imageWrapperBottom.scrollLeft += widthToScrollBottom;
+      imageWrapper[0].scrollLeft += widthToScroll;
+      imageWrapper[1].scrollLeft += widthToScroll;
+      var btn = $(this);
+      btn.prop("disabled", true);
+      window.setTimeout(function () {
+        btn.prop("disabled", false);
+      }, 600);
     })
     .on("mouseenter", function () {
       $(".next-arrow img").attr("src", "img/arrow-blue-right.png");
@@ -86,11 +86,15 @@ $(document).ready(function () {
     .on("mouseleave", function () {
       $(".next-arrow img").attr("src", "img/arrow-gray-right.png");
     });
-
   $(".prev-arrow")
     .on("click", function () {
-      imageWrapper.scrollLeft -= widthToScroll;
-      imageWrapperBottom.scrollLeft -= widthToScrollBottom;
+      imageWrapper[0].scrollLeft -= widthToScroll;
+      imageWrapper[1].scrollLeft -= widthToScroll;
+      var btn = $(this);
+      btn.prop("disabled", true);
+      window.setTimeout(function () {
+        btn.prop("disabled", false);
+      }, 600);
     })
     .on("mouseenter", function () {
       $(".prev-arrow img").attr("src", "img/arrow-blue-left.png");

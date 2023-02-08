@@ -4,12 +4,11 @@
   height: 100px;
   width: 100%;
 }
-@mixin bg-color($width) {
+@mixin footerHeader($width, $border: 0 0 5px 5px) {
   background-color: $primary;
-  border-radius: 0 0 5px 5px;
+  border-radius: $border;
   width: $width;
 }
-
 * {
   margin: 0;
   padding: 0;
@@ -24,23 +23,22 @@
     @include size();
     display: flex;
     gap: 19px;
-
     .header-left {
-      @include bg-color(30vw);
+      @include footerHeader(30vw);
     }
     .header-right {
-      @include bg-color(70vw);
+      @include footerHeader(70vw);
     }
   }
   .main {
     display: flex;
-    margin: 100px 0;
+    margin-top: 150px;
     margin-left: -400px;
   }
   .footer {
     @include size();
+    @include footerHeader(100vw, 5px 5px 0 0);
     max-width: 940px;
-    background-color: $primary;
     position: fixed;
     bottom: 0;
   }

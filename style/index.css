@@ -2,67 +2,53 @@
 .left-side img {
   height: 200px;
   border-radius: 5px;
+  scroll-snap-align: start;
 }
 
 .image-wrapper {
-  margin-top: 60px;
   max-width: 1000px;
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(-webkit-max-content, auto);
   grid-auto-columns: minmax(max-content, auto);
   overflow-x: hidden;
   gap: 10px;
-  -ms-scroll-snap-type: x mandatory;
-      scroll-snap-type: x mandatory;
+  scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   scrollbar-width: none;
+}
+.image-wrapper.no-smooth {
+  scroll-behavior: auto;
 }
 
 .image-wrapper-bottom {
   max-width: 810px;
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(-webkit-max-content, auto);
   grid-auto-columns: minmax(max-content, auto);
   overflow-x: hidden;
   gap: 10px;
-  -ms-scroll-snap-type: x mandatory;
-      scroll-snap-type: x mandatory;
+  scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   scrollbar-width: none;
 }
-
-.image-wrapper.no-smooth {
-  scroll-behavior: auto;
-}
-
 .image-wrapper-bottom.no-smooth {
   scroll-behavior: auto;
 }
 
-.image-item {
-  scroll-snap-align: start;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
 .bottom-row {
-  margin-top: 5px;
+  margin-top: 10px;
   display: flex;
   flex-direction: row;
 }
 
 .right-side {
   margin-left: 20px;
-  margin-top: 60px;
   display: flex;
   flex-direction: column;
-  font-size: 16px;
   color: #484a4c;
 }
 .right-side div {
-  width: 300px;
+  width: 310px;
   margin-top: 20px;
   line-height: 26px;
   font-size: 18px;
@@ -103,14 +89,16 @@
 }
 .content .main {
   display: flex;
-  margin: 100px 0;
+  margin-top: 150px;
   margin-left: -400px;
 }
 .content .footer {
   height: 100px;
   width: 100%;
-  max-width: 940px;
   background-color: #ddd;
+  border-radius: 5px 5px 0 0;
+  width: 100vw;
+  max-width: 940px;
   position: fixed;
   bottom: 0;
 }
@@ -121,7 +109,6 @@
 .arrows img {
   height: 16px;
   width: 10px;
-  border-radius: 5px;
 }
 
 .next-arrow,

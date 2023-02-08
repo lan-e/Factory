@@ -1,51 +1,39 @@
 .left-side {
   img {
     height: 200px;
-    border-radius: 5px;
+    border-radius: $radius;
+    scroll-snap-align: start;
   }
+}
+@mixin wrapper() {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(max-content, auto);
+  overflow-x: hidden;
+  gap: $imageGap;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
 }
 //top row
 .image-wrapper {
-  margin-top: 60px;
   max-width: 1000px;
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(max-content, auto);
-  overflow-x: hidden;
-  gap: $imageGap;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
+  @include wrapper();
+  &.no-smooth {
+    scroll-behavior: auto;
+  }
 }
+//bottom row
 .image-wrapper-bottom {
   max-width: 810px;
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(max-content, auto);
-  overflow-x: hidden;
-  gap: $imageGap;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
+  @include wrapper();
+  &.no-smooth {
+    scroll-behavior: auto;
+  }
 }
-
-.image-wrapper.no-smooth {
-  scroll-behavior: auto;
-}
-.image-wrapper-bottom.no-smooth {
-  scroll-behavior: auto;
-}
-
-//individual images
-.image-item {
-  scroll-snap-align: start;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
 //bottom row + arrows
 .bottom-row {
-  margin-top: 5px;
+  margin-top: $imageGap;
   display: flex;
   flex-direction: row;
 }

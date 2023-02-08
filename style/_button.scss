@@ -3,14 +3,13 @@
   img {
     height: 16px;
     width: 10px;
-    border-radius: 5px;
   }
 }
 .next-arrow,
 .prev-arrow {
   border: 1px solid $primary;
-  border-radius: 5px;
-  margin-bottom: 10px;
+  border-radius: $radius;
+  margin-bottom: $imageGap;
   width: 60px;
   height: 60px;
   align-items: center;
