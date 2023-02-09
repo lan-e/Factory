@@ -1,13 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
 
-@mixin size() {
-  height: 100px;
-  width: 100%;
-}
 @mixin footerHeader($width, $border: 0 0 5px 5px) {
+  height: 100px;
+  width: $width;
   background-color: $primary;
   border-radius: $border;
-  width: $width;
 }
 * {
   margin: 0;
@@ -20,7 +17,6 @@
   max-width: 940px;
   margin: auto;
   .header {
-    @include size();
     display: flex;
     gap: 19px;
     .header-left {
@@ -36,7 +32,6 @@
     margin-left: -400px;
   }
   .footer {
-    @include size();
     @include footerHeader(100vw, 5px 5px 0 0);
     max-width: 940px;
     position: fixed;

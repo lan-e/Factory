@@ -1,11 +1,11 @@
 $(document).ready(function () {
-  imageWrapper = [$(".image-wrapper")[0], $(".image-wrapper-bottom")[0]];
-  imageWrapperChildren = [
+  var imageWrapper = [$(".image-wrapper")[0], $(".image-wrapper-bottom")[0]]; //array of 2 image wrappers
+  var imageWrapperChildren = [
     $(".image-wrapper").children().toArray(),
     $(".image-wrapper-bottom").children().toArray(),
-  ];
-  let widthToScroll = imageWrapperChildren[0][0].offsetWidth;
-  column = [
+  ]; //making an array of image wrapper children
+  var widthToScroll = imageWrapperChildren[0][0].offsetWidth;
+  var column = [
     Math.floor(imageWrapper[0].offsetWidth / widthToScroll),
     Math.floor(imageWrapper[1].offsetWidth / widthToScroll),
   ];
@@ -17,7 +17,8 @@ $(document).ready(function () {
         "beforeend",
         $(item).prop("outerHTML")
       );
-    });
+    }); //adds a new img element after the array
+
     imageWrapperChildren[x]
       .slice(-column[x])
       .reverse()
@@ -26,8 +27,7 @@ $(document).ready(function () {
           "afterbegin",
           $(item).prop("outerHTML")
         );
-      });
-
+      }); //adds a new img element before the array
     if (x == 0) {
       $(".image-wrapper").addClass("no-smooth");
       $(".image-wrapper").scrollLeft(imageWrapper[x].offsetWidth);
@@ -37,9 +37,8 @@ $(document).ready(function () {
       $(".image-wrapper-bottom").scrollLeft(imageWrapper[x].offsetWidth);
       $(".image-wrapper-bottom").removeClass("no-smooth");
     }
-
-    $(".image-wrapper").on("scroll", function () {
-      if (imageWrapper[x].scrollLeft < 2) {
+    function loopFunc(z) {
+      if (imageWrapper[x].scrollLeft < z) {
         imageWrapper[x].classList.add("no-smooth");
         imageWrapper[x].scrollLeft =
           imageWrapper[x].scrollWidth - 2 * imageWrapper[x].offsetWidth;
@@ -52,23 +51,11 @@ $(document).ready(function () {
         imageWrapper[x].scrollLeft = imageWrapper[x].offsetWidth;
         imageWrapper[x].classList.remove("no-smooth");
       }
-    });
-    $(".image-wrapper-bottom").on("scroll", function () {
-      if (imageWrapper[x].scrollLeft < 1) {
-        imageWrapper[x].classList.add("no-smooth");
-        imageWrapper[x].scrollLeft =
-          imageWrapper[x].scrollWidth - 2 * imageWrapper[x].offsetWidth;
-        imageWrapper[x].classList.remove("no-smooth");
-      } else if (
-        imageWrapper[x].scrollLeft ===
-        imageWrapper[x].scrollWidth - imageWrapper[x].offsetWidth
-      ) {
-        imageWrapper[x].classList.add("no-smooth");
-        imageWrapper[x].scrollLeft = imageWrapper[x].offsetWidth;
-        imageWrapper[x].classList.remove("no-smooth");
-      }
-    });
+    }
+    $(".image-wrapper").on("scroll", () => loopFunc(2));
+    $(".image-wrapper-bottom").on("scroll", () => loopFunc(1));
   }
+
   //ARROW CHANGE ON HOVER AND CLICK
   $(".next-arrow")
     .on("click", function () {
@@ -79,7 +66,7 @@ $(document).ready(function () {
       window.setTimeout(function () {
         btn.prop("disabled", false);
       }, 600);
-    })
+    }) //prevents button spamming
     .on("mouseenter", function () {
       $(".next-arrow img").attr("src", "img/arrow-blue-right.png");
     })
@@ -95,7 +82,7 @@ $(document).ready(function () {
       window.setTimeout(function () {
         btn.prop("disabled", false);
       }, 600);
-    })
+    }) //prevents button spamming
     .on("mouseenter", function () {
       $(".prev-arrow img").attr("src", "img/arrow-blue-left.png");
     })

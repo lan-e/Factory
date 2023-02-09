@@ -72,20 +72,20 @@
   margin: auto;
 }
 .content .header {
-  height: 100px;
-  width: 100%;
   display: flex;
   gap: 19px;
 }
 .content .header .header-left {
+  height: 100px;
+  width: 30vw;
   background-color: #ddd;
   border-radius: 0 0 5px 5px;
-  width: 30vw;
 }
 .content .header .header-right {
+  height: 100px;
+  width: 70vw;
   background-color: #ddd;
   border-radius: 0 0 5px 5px;
-  width: 70vw;
 }
 .content .main {
   display: flex;
@@ -94,10 +94,9 @@
 }
 .content .footer {
   height: 100px;
-  width: 100%;
+  width: 100vw;
   background-color: #ddd;
   border-radius: 5px 5px 0 0;
-  width: 100vw;
   max-width: 940px;
   position: fixed;
   bottom: 0;
@@ -125,6 +124,7 @@
 .next-arrow:hover,
 .prev-arrow:hover {
   border: 1px solid #134880;
+  cursor: pointer;
 }
 .next-arrow:focus,
 .prev-arrow:focus {

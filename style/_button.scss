@@ -17,6 +17,7 @@
   justify-content: space-around;
   &:hover {
     border: 1px solid $secondary;
+    cursor: pointer;
   }
   &:focus {
     outline: none;
