@@ -1,11 +1,11 @@
 $(document).ready(function () {
-  var imageWrapper = [$(".image-wrapper")[0], $(".image-wrapper-bottom")[0]]; //array of 2 image wrappers
-  var imageWrapperChildren = [
+  let imageWrapper = [$(".image-wrapper")[0], $(".image-wrapper-bottom")[0]]; //array of 2 image wrappers
+  let imageWrapperChildren = [
     $(".image-wrapper").children().toArray(),
     $(".image-wrapper-bottom").children().toArray(),
   ]; //making an array of image wrapper children
-  var widthToScroll = imageWrapperChildren[0][0].offsetWidth;
-  var column = [
+  let widthToScroll = imageWrapperChildren[0][0].offsetWidth;
+  let column = [
     Math.floor(imageWrapper[0].offsetWidth / widthToScroll),
     Math.floor(imageWrapper[1].offsetWidth / widthToScroll),
   ];
@@ -37,31 +37,31 @@ $(document).ready(function () {
       $(".image-wrapper-bottom").scrollLeft(imageWrapper[x].offsetWidth);
       $(".image-wrapper-bottom").removeClass("no-smooth");
     }
-    function loopFunc(z) {
-      if (imageWrapper[x].scrollLeft < z) {
-        imageWrapper[x].classList.add("no-smooth");
-        imageWrapper[x].scrollLeft =
-          imageWrapper[x].scrollWidth - 2 * imageWrapper[x].offsetWidth;
-        imageWrapper[x].classList.remove("no-smooth");
-      } else if (
-        imageWrapper[x].scrollLeft ===
-        imageWrapper[x].scrollWidth - imageWrapper[x].offsetWidth
-      ) {
-        imageWrapper[x].classList.add("no-smooth");
-        imageWrapper[x].scrollLeft = imageWrapper[x].offsetWidth;
-        imageWrapper[x].classList.remove("no-smooth");
-      }
+  }
+  function loopFunc(x, z) {
+    if (imageWrapper[x].scrollLeft < z) {
+      imageWrapper[x].classList.add("no-smooth");
+      imageWrapper[x].scrollLeft =
+        imageWrapper[x].scrollWidth - 2 * imageWrapper[x].offsetWidth;
+      imageWrapper[x].classList.remove("no-smooth");
+    } else if (
+      imageWrapper[x].scrollLeft ===
+      imageWrapper[x].scrollWidth - imageWrapper[x].offsetWidth
+    ) {
+      imageWrapper[x].classList.add("no-smooth");
+      imageWrapper[x].scrollLeft = imageWrapper[x].offsetWidth;
+      imageWrapper[x].classList.remove("no-smooth");
     }
-    $(".image-wrapper").on("scroll", () => loopFunc(2));
-    $(".image-wrapper-bottom").on("scroll", () => loopFunc(1));
   }
 
+  $(".image-wrapper").on("scroll", () => loopFunc(0, 2));
+  $(".image-wrapper-bottom").on("scroll", () => loopFunc(1, 1));
   //ARROW CHANGE ON HOVER AND CLICK
   $(".next-arrow")
     .on("click", function () {
       imageWrapper[0].scrollLeft += widthToScroll;
       imageWrapper[1].scrollLeft += widthToScroll;
-      var btn = $(this);
+      let btn = $(this);
       btn.prop("disabled", true);
       window.setTimeout(function () {
         btn.prop("disabled", false);
@@ -77,7 +77,7 @@ $(document).ready(function () {
     .on("click", function () {
       imageWrapper[0].scrollLeft -= widthToScroll;
       imageWrapper[1].scrollLeft -= widthToScroll;
-      var btn = $(this);
+      let btn = $(this);
       btn.prop("disabled", true);
       window.setTimeout(function () {
         btn.prop("disabled", false);

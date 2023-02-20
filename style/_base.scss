@@ -28,8 +28,9 @@
   }
   .main {
     display: flex;
+    justify-content: center;
+    margin-left: -600px;
     margin-top: 150px;
-    margin-left: -400px;
   }
   .footer {
     @include footerHeader(100vw, 5px 5px 0 0);

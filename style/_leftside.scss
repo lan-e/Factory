@@ -17,7 +17,7 @@
 }
 //top row
 .image-wrapper {
-  max-width: 1000px;
+  max-width: 1230px;
   @include wrapper();
   &.no-smooth {
     scroll-behavior: auto;
@@ -25,7 +25,7 @@
 }
 //bottom row
 .image-wrapper-bottom {
-  max-width: 810px;
+  max-width: 1080px;
   @include wrapper();
   &.no-smooth {
     scroll-behavior: auto;
