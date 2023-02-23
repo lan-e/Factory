@@ -1,35 +1,21 @@
-.left-side {
-  img {
-    height: 200px;
-    border-radius: $radius;
-    scroll-snap-align: start;
-  }
+.left-side img {
+  height: 200px;
+  border-radius: $radius;
 }
 @mixin wrapper() {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(max-content, auto);
-  overflow-x: hidden;
   gap: $imageGap;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
 }
 //top row
 .image-wrapper {
   max-width: 1230px;
   @include wrapper();
-  &.no-smooth {
-    scroll-behavior: auto;
-  }
 }
 //bottom row
 .image-wrapper-bottom {
   max-width: 1080px;
   @include wrapper();
-  &.no-smooth {
-    scroll-behavior: auto;
-  }
 }
 //bottom row + arrows
 .bottom-row {

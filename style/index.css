@@ -2,37 +2,20 @@
 .left-side img {
   height: 200px;
   border-radius: 5px;
-  scroll-snap-align: start;
 }
 
 .image-wrapper {
   max-width: 1230px;
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(max-content, auto);
-  overflow-x: hidden;
   gap: 10px;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-}
-.image-wrapper.no-smooth {
-  scroll-behavior: auto;
 }
 
 .image-wrapper-bottom {
   max-width: 1080px;
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(max-content, auto);
-  overflow-x: hidden;
   gap: 10px;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-}
-.image-wrapper-bottom.no-smooth {
-  scroll-behavior: auto;
 }
 
 .bottom-row {

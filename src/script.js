@@ -1,88 +1,61 @@
 $(document).ready(function () {
-  let imageWrapper = [$(".image-wrapper")[0], $(".image-wrapper-bottom")[0]]; //array of 2 image wrappers
-  let imageWrapperChildren = [
-    $(".image-wrapper").children().toArray(),
-    $(".image-wrapper-bottom").children().toArray(),
-  ]; //making an array of image wrapper children
-  let widthToScroll = imageWrapperChildren[0][0].offsetWidth;
-  let column = [
-    Math.floor(imageWrapper[0].offsetWidth / widthToScroll),
-    Math.floor(imageWrapper[1].offsetWidth / widthToScroll),
-  ];
-
-  for (let x = 0; x < 2; x++) {
-    imageWrapperChildren[x].slice(0, column[x]);
-    imageWrapperChildren[x].forEach((item) => {
-      imageWrapper[x].insertAdjacentHTML(
-        "beforeend",
-        $(item).prop("outerHTML")
-      );
-    }); //adds a new img element after the array
-
-    imageWrapperChildren[x]
-      .slice(-column[x])
-      .reverse()
-      .forEach((item) => {
-        imageWrapper[x].insertAdjacentHTML(
-          "afterbegin",
-          $(item).prop("outerHTML")
-        );
-      }); //adds a new img element before the array
-    if (x == 0) {
-      $(".image-wrapper").addClass("no-smooth");
-      $(".image-wrapper").scrollLeft(imageWrapper[x].offsetWidth);
-      $(".image-wrapper").removeClass("no-smooth");
-    } else {
-      $(".image-wrapper-bottom").addClass("no-smooth");
-      $(".image-wrapper-bottom").scrollLeft(imageWrapper[x].offsetWidth);
-      $(".image-wrapper-bottom").removeClass("no-smooth");
-    }
-  }
-  function loopFunc(x, z) {
-    if (imageWrapper[x].scrollLeft < z) {
-      imageWrapper[x].classList.add("no-smooth");
-      imageWrapper[x].scrollLeft =
-        imageWrapper[x].scrollWidth - 2 * imageWrapper[x].offsetWidth;
-      imageWrapper[x].classList.remove("no-smooth");
-    } else if (
-      imageWrapper[x].scrollLeft ===
-      imageWrapper[x].scrollWidth - imageWrapper[x].offsetWidth
-    ) {
-      imageWrapper[x].classList.add("no-smooth");
-      imageWrapper[x].scrollLeft = imageWrapper[x].offsetWidth;
-      imageWrapper[x].classList.remove("no-smooth");
-    }
-  }
-
-  $(".image-wrapper").on("scroll", () => loopFunc(0, 2));
-  $(".image-wrapper-bottom").on("scroll", () => loopFunc(1, 1));
-  //ARROW CHANGE ON HOVER AND CLICK
+  let imageWrapperTop = $(".image-wrapper");
+  let imageWrapperBottom = $(".image-wrapper-bottom");
+  let i = 5;
+  let j = 4;
   $(".next-arrow")
     .on("click", function () {
-      imageWrapper[0].scrollLeft += widthToScroll;
-      imageWrapper[1].scrollLeft += widthToScroll;
-      let btn = $(this);
-      btn.prop("disabled", true);
-      window.setTimeout(function () {
-        btn.prop("disabled", false);
-      }, 600);
-    }) //prevents button spamming
+      if (i > 0) {
+        $(".image-wrapper img:last").prependTo(imageWrapperTop);
+        i--;
+      } else if (i == 0) {
+        $(".image-wrapper img:last").prependTo(imageWrapperTop);
+        i = 5;
+      }
+      if (j > 0) {
+        $(".image-wrapper-bottom img:last").prependTo(imageWrapperBottom);
+        j--;
+      } else if (j == 0) {
+        $(".image-wrapper-bottom img:last").prependTo(imageWrapperBottom);
+        j = 4;
+      }
+    })
     .on("mouseenter", function () {
       $(".next-arrow img").attr("src", "img/arrow-blue-right.png");
     })
     .on("mouseleave", function () {
       $(".next-arrow img").attr("src", "img/arrow-gray-right.png");
     });
+
   $(".prev-arrow")
     .on("click", function () {
-      imageWrapper[0].scrollLeft -= widthToScroll;
-      imageWrapper[1].scrollLeft -= widthToScroll;
-      let btn = $(this);
-      btn.prop("disabled", true);
-      window.setTimeout(function () {
-        btn.prop("disabled", false);
-      }, 600);
-    }) //prevents button spamming
+      if (i > 0) {
+        $(".image-wrapper img:first")
+          .hide()
+          .appendTo(imageWrapperTop)
+          .fadeIn("slow");
+        i--;
+      } else if (i == 0) {
+        $(".image-wrapper img:first")
+          .hide()
+          .appendTo(imageWrapperTop)
+          .fadeIn("slow");
+        i = 5;
+      }
+      if (j > 0) {
+        $(".image-wrapper-bottom img:first")
+          .hide()
+          .appendTo(imageWrapperBottom)
+          .fadeIn("slow");
+        j--;
+      } else if (j == 0) {
+        $(".image-wrapper-bottom img:first")
+          .hide()
+          .appendTo(imageWrapperBottom)
+          .fadeIn("slow");
+        j = 4;
+      }
+    })
     .on("mouseenter", function () {
       $(".prev-arrow img").attr("src", "img/arrow-blue-left.png");
     })
