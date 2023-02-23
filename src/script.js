@@ -1,22 +1,26 @@
 $(document).ready(function () {
-  let imageWrapperTop = $(".image-wrapper");
-  let imageWrapperBottom = $(".image-wrapper-bottom");
+  let imgWrapperTop = $(".image-wrapper");
+  let imgWrapperBottom = $(".image-wrapper-bottom");
+  let imgTop = ".image-wrapper img";
+  let imgBottom = ".image-wrapper-bottom img";
+  //let array = $(imgTop).map(function (index, element) {return '<img src="' + $(element).attr("src") + '" alt="">';}).get();
+  //let arrayBottom = $(imgBottom).map(function (index, element) {return '<img src="' + $(element).attr("src") + '" alt="">';}).get();
   let i = 5;
   let j = 4;
   $(".next-arrow")
     .on("click", function () {
       if (i > 0) {
-        $(".image-wrapper img:last").prependTo(imageWrapperTop);
+        $(imgTop).last().prependTo(imgWrapperTop);
         i--;
       } else if (i == 0) {
-        $(".image-wrapper img:last").prependTo(imageWrapperTop);
+        $(imgTop).last().prependTo(imgWrapperTop);
         i = 5;
       }
       if (j > 0) {
-        $(".image-wrapper-bottom img:last").prependTo(imageWrapperBottom);
+        $(imgBottom).last().prependTo(imgWrapperBottom);
         j--;
       } else if (j == 0) {
-        $(".image-wrapper-bottom img:last").prependTo(imageWrapperBottom);
+        $(imgBottom).last().prependTo(imgWrapperBottom);
         j = 4;
       }
     })
@@ -26,33 +30,20 @@ $(document).ready(function () {
     .on("mouseleave", function () {
       $(".next-arrow img").attr("src", "img/arrow-gray-right.png");
     });
-
   $(".prev-arrow")
     .on("click", function () {
       if (i > 0) {
-        $(".image-wrapper img:first")
-          .hide()
-          .appendTo(imageWrapperTop)
-          .fadeIn("slow");
+        $(imgTop).first().hide().appendTo(imgWrapperTop).fadeIn("slow");
         i--;
       } else if (i == 0) {
-        $(".image-wrapper img:first")
-          .hide()
-          .appendTo(imageWrapperTop)
-          .fadeIn("slow");
+        $(imgTop).first().hide().appendTo(imgWrapperTop).fadeIn("slow");
         i = 5;
       }
       if (j > 0) {
-        $(".image-wrapper-bottom img:first")
-          .hide()
-          .appendTo(imageWrapperBottom)
-          .fadeIn("slow");
+        $(imgBottom).first().hide().appendTo(imgWrapperBottom).fadeIn("slow");
         j--;
       } else if (j == 0) {
-        $(".image-wrapper-bottom img:first")
-          .hide()
-          .appendTo(imageWrapperBottom)
-          .fadeIn("slow");
+        $(imgBottom).first().hide().appendTo(imgWrapperBottom).fadeIn("slow");
         j = 4;
       }
     })
